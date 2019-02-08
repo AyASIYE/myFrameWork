@@ -22,7 +22,7 @@ protected static ExtentTest logger;
 
 
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setup(){
     driver=Driver.getDriver();
     pages = new Pages();
@@ -31,7 +31,7 @@ protected static ExtentTest logger;
     driver.get(ConfigurationReader.getProperty("url"));
 }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) throws IOException {
         if (result.getStatus() == ITestResult.FAILURE) {
             String screenshotLocation = ScreenShot.getScreenshot(result.getName());
@@ -46,13 +46,13 @@ protected static ExtentTest logger;
 
     }
 
-    @AfterTest
+    @AfterTest(alwaysRun = true)
     public void endrepo(){
         extent.flush();
 }
 
 
-    @BeforeTest
+    @BeforeTest(alwaysRun = true)
     public void repo(){
         extent = new ExtentReports();
 
